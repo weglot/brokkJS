@@ -15,8 +15,8 @@
         var attributes = {};
         $.each(this._defaults, function(index, value) {
             if (typeof value !== 'function') {
-                index = index.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase();
-                value = $(element).attr('data-'+index);
+                var attrIndex = index.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase();
+                value = $(element).attr('data-brokk-'+attrIndex);
                 if (value === 'this') {
                     value = element;
                 }
@@ -29,7 +29,6 @@
         }
         this.options = $.extend( {}, this._defaults, attributes );
         this.options = $.extend( {}, this.options, options );
-
         this.init();
     }
 
@@ -69,8 +68,10 @@
                     break;
                 case $.fn.brokk.fireEvents.ON_SUBMIT:
                     plugin.$element.on('submit' + '.' + plugin._name, function (e) {
-                        e.preventDefault();
-                        plugin.fire();
+                        if ($(this)[0].checkValidity()) {
+                            e.preventDefault();
+                            plugin.fire();
+                        }
                     });
                     break;
             }
@@ -106,7 +107,6 @@
             $(this.options.triggerElements).prop('disabled', true);
             $(this.options.triggerElements).addClass('disabled');
             if ($(this.options.toUpdateElements).find('#brokk-loading').length === 0) {
-                console.log($.fn.brokk.loadingTemplate);
                 $(this.options.toUpdateElements).append('<span id="brokk-loading">' + $.fn.brokk.loadingTemplate + '</span>');
             }
         },
