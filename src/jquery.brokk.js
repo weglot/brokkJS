@@ -20,6 +20,9 @@
                 if (value === 'this') {
                     value = element;
                 }
+                if (index === 'requestParams' && typeof value !== 'undefined') {
+                    value = JSON.parse(value);
+                }
                 attributes[index] = value;
             }
 
@@ -106,7 +109,7 @@
         before: function (arguments) {
             $(this.options.triggerElements).prop('disabled', true);
             $(this.options.triggerElements).addClass('disabled');
-            if ($(this.options.toUpdateElements).find('#brokk-loading').length === 0) {
+            if (this.options.showOverLay && $(this.options.toUpdateElements).find('#brokk-loading').length === 0) {
                 $(this.options.toUpdateElements).append('<span id="brokk-loading">' + $.fn.brokk.loadingTemplate + '</span>');
             }
         },
