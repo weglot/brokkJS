@@ -3,20 +3,20 @@
 // ---------------------------------
 // Brief plugin description
 // ------------------------
-;(function ( $, window, document, undefined ) {
+;(function ($, window, document, undefined) {
 
     var pluginName = 'brokkJS';
 
-    function Plugin ( element, options ) {
+    function Plugin(element, options) {
         this.element = element;
         this._name = pluginName;
         this._defaults = $.fn.brokk.defaults;
 
         var attributes = {};
-        $.each(this._defaults, function(index, value) {
+        $.each(this._defaults, function (index, value) {
             if (typeof value !== 'function') {
                 var attrIndex = index.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase();
-                value = $(element).attr('data-brokk-'+attrIndex);
+                value = $(element).attr('data-brokk-' + attrIndex);
                 if (value === 'this') {
                     value = element;
                 }
@@ -30,17 +30,9 @@
         if (typeof attributes.params !== 'undefined') {
             attributes.params = JSON.parse(attributes.params);
         }
-        this.options = $.extend( {}, this._defaults, attributes );
-        this.options = $.extend( {}, this.options, options );
+        this.options = $.extend({}, this._defaults, attributes);
+        this.options = $.extend({}, this.options, options);
         this.init();
-    }
-
-    function fireSuccessElements (plugin) {
-        var element = plugin.options.toFireSuccessElements;
-        if ($(element).data("plugin_" + pluginName)) {
-            $(element).brokkApi().fire();
-        }
-
     }
 
     $.extend(Plugin.prototype, {
@@ -48,14 +40,14 @@
             this.buildCache();
             this.bindEvents();
         },
-        destroy: function() {
+        destroy: function () {
             this.unbindEvents();
             this.$element.removeData();
         },
         buildCache: function () {
             this.$element = $(this.element);
         },
-        bindEvents: function() {
+        bindEvents: function () {
             var plugin = this;
 
             switch (this.options.fireEvent) {
@@ -79,10 +71,10 @@
                     break;
             }
         },
-        unbindEvents: function() {
-            this.$element.off('.'+this._name);
+        unbindEvents: function () {
+            this.$element.off('.' + this._name);
         },
-        callback: function(callback, arguments) {
+        callback: function (callback, arguments) {
             if (typeof callback === 'function') {
                 callback.call(this, arguments);
             }
@@ -106,6 +98,12 @@
             });
 
         },
+        fireSuccessElements: function (arguments) {
+            var element = this.options.toFireSuccessElements;
+            if ($(element).data("plugin_" + pluginName)) {
+                $(element).brokkApi().fire();
+            }
+        },
         before: function (arguments) {
             $(this.options.triggerElements).prop('disabled', true);
             $(this.options.triggerElements).addClass('disabled');
@@ -115,7 +113,7 @@
         },
         onSuccess: function (arguments) {
             $(this.options.toUpdateElements).html(arguments.data);
-            fireSuccessElements(this);
+            this.fireSuccessElements();
         },
         onError: function (arguments) {
 
@@ -128,17 +126,17 @@
 
     });
 
-    $.fn.brokk = function ( options ) {
-        return this.each(function() {
-            var pluginInstance = $.data( this, "plugin_" + pluginName );
+    $.fn.brokk = function (options) {
+        return this.each(function () {
+            var pluginInstance = $.data(this, "plugin_" + pluginName);
             if (!pluginInstance) {
-                $.data( this, "plugin_" + pluginName, new Plugin( this, options ) );
+                $.data(this, "plugin_" + pluginName, new Plugin(this, options));
             }
         });
     };
 
     $.fn.brokkApi = function () {
-        return $.data( this[0], "plugin_" + pluginName );
+        return $.data(this[0], "plugin_" + pluginName);
     };
 
     $.fn.brokk.loadingTemplate = 'Loading';
@@ -172,4 +170,4 @@
         }
     };
 
-})( jQuery, window, document );
+})(jQuery, window, document);
