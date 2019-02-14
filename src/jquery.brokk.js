@@ -103,11 +103,11 @@
 
         },
         fireSuccessElements: function (arguments) {
-            $(this.options.toFireSuccessElements).each(function() {
-                if($(this).data("plugin_" + pluginName) ) {
-                    $(this).brokkApi().fire();
+            this.options.toFireSuccessElements.forEach(function(element) {
+                if($(element).data("plugin_" + pluginName)) {
+                    $(element).brokkApi().fire();
                 }
-            });            
+            });     
         },
         before: function (arguments) {            
             this.options.triggerElements.forEach(function(element) {
