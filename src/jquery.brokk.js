@@ -11,28 +11,32 @@
         this.element = element;
         this._name = pluginName;
         this._defaults = $.fn.brokk.defaults;
-
         var attributes = {};
-        $.each(this._defaults, function (index, value) {
+        var arrayElements = ['toUpdateElements', 'triggerElements', 'toFireSuccessElements'];        
+        $.each(this._defaults, function (index, value) {           
             if (typeof value !== 'function') {
                 var attrIndex = index.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase();
                 value = $(element).attr('data-brokk-' + attrIndex);
                 if (value === 'this') {
                     value = element;
                 }
+                if ( arrayElements.indexOf(index) !== -1 && typeof value === 'string') {                 
+                    value = value.split(',').map(function(item) {
+                        return item.trim() === 'this' ? element : item;
+                    });                    
+                }
                 if (index === 'requestParams' && typeof value !== 'undefined') {
                     value = JSON.parse(value);
                 }
                 attributes[index] = value;
             }
-
-        });
+        });  
         if (typeof attributes.params !== 'undefined') {
             attributes.params = JSON.parse(attributes.params);
         }
         this.options = $.extend({}, this._defaults, attributes);
         this.options = $.extend({}, this.options, options);
-        this.init();
+        this.init();       
     }
 
     $.extend(Plugin.prototype, {
@@ -99,31 +103,42 @@
 
         },
         fireSuccessElements: function (arguments) {
-            var element = this.options.toFireSuccessElements;
-            if ($(element).data("plugin_" + pluginName)) {
-                $(element).brokkApi().fire();
-            }
+            $(this.options.toFireSuccessElements).each(function() {
+                if($(this).data("plugin_" + pluginName) ) {
+                    $(this).brokkApi().fire();
+                }
+            });            
         },
-        before: function (arguments) {
-            $(this.options.triggerElements).prop('disabled', true);
-            $(this.options.triggerElements).addClass('disabled');
-            if (this.options.showOverLay && $(this.options.toUpdateElements).find('#brokk-loading').length === 0) {
-                $(this.options.toUpdateElements).append('<span id="brokk-loading">' + $.fn.brokk.loadingTemplate + '</span>');
-            }
+        before: function (arguments) {            
+            this.options.triggerElements.forEach(function(element) {
+                $(element).prop('disabled', true);
+                $(element).addClass('disabled');
+            });
+            if (this.options.showOverLay) {               
+                this.options.toUpdateElements.forEach(function(element) {
+                    if($(element).find('#brokk-loading').length === 0) {
+                        $(element).append('<span id="brokk-loading">' + $.fn.brokk.loadingTemplate + '</span>');
+                    }
+                });                      
+            }           
         },
-        onSuccess: function (arguments) {
-            $(this.options.toUpdateElements).html(arguments.data);
-            this.fireSuccessElements();
+        onSuccess: function (arguments) {            
+            this.options.toUpdateElements.forEach(function(element) {
+                $(element).html(arguments.data);
+            });           
         },
         onError: function (arguments) {
 
         },
-        onComplete: function (arguments) {
-            $(this.options.triggerElements).prop('disabled', false);
-            $(this.options.triggerElements).removeClass('disabled');
-            $(this.options.toUpdateElements).find('#brokk-loading').remove();
+        onComplete: function (arguments) {           
+            this.options.triggerElements.forEach(function(element) {
+                $(element).prop('disabled', false);
+                $(element).removeClass('disabled');
+            });            
+            this.options.toUpdateElements.forEach(function(element) {
+                $(element).find('#brokk-loading').remove()
+            });           
         }
-
     });
 
     $.fn.brokk = function (options) {
@@ -152,9 +167,9 @@
         requestMethod: 'GET',
         requestParams: null,
         fireEvent: $.fn.brokk.fireEvents.ON_READY,
-        toUpdateElements: null,
-        triggerElements: null,
-        toFireSuccessElements: null,
+        toUpdateElements: [], // todo adjust
+        triggerElements: [],
+        toFireSuccessElements: [],
         showOverLay: true,
         before: function (arguments) {
             this.before(arguments);
