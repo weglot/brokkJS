@@ -12,31 +12,31 @@
         this._name = pluginName;
         this._defaults = $.fn.brokk.defaults;
         var attributes = {};
-        var arrayElements = ['toUpdateElements', 'triggerElements', 'toFireSuccessElements'];        
-        $.each(this._defaults, function (index, value) {           
+        var arrayParams = ['toUpdateElements', 'triggerElements', 'toFireSuccessElements'];
+        $.each(this._defaults, function (index, value) {
             if (typeof value !== 'function') {
                 var attrIndex = index.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase();
                 value = $(element).attr('data-brokk-' + attrIndex);
                 if (value === 'this') {
                     value = element;
                 }
-                if ( arrayElements.indexOf(index) !== -1 && typeof value === 'string') {                 
-                    value = value.split(',').map(function(item) {
+                if (arrayParams.indexOf(index) !== -1 && typeof value === 'string') {
+                    value = value.split(',').map(function (item) {
                         return item.trim() === 'this' ? element : item;
-                    });                    
+                    });
                 }
                 if (index === 'requestParams' && typeof value !== 'undefined') {
                     value = JSON.parse(value);
                 }
                 attributes[index] = value;
             }
-        });  
+        });
         if (typeof attributes.params !== 'undefined') {
             attributes.params = JSON.parse(attributes.params);
         }
         this.options = $.extend({}, this._defaults, attributes);
         this.options = $.extend({}, this.options, options);
-        this.init();       
+        this.init();
     }
 
     $.extend(Plugin.prototype, {
@@ -103,41 +103,41 @@
 
         },
         fireSuccessElements: function (arguments) {
-            this.options.toFireSuccessElements.forEach(function(element) {
-                if($(element).data("plugin_" + pluginName)) {
+            this.options.toFireSuccessElements.forEach(function (element) {
+                if ($(element).data("plugin_" + pluginName)) {
                     $(element).brokkApi().fire();
                 }
-            });     
+            });
         },
-        before: function (arguments) {            
-            this.options.triggerElements.forEach(function(element) {
+        before: function (arguments) {
+            this.options.triggerElements.forEach(function (element) {
                 $(element).prop('disabled', true);
                 $(element).addClass('disabled');
             });
-            if (this.options.showOverLay) {               
-                this.options.toUpdateElements.forEach(function(element) {
-                    if($(element).find('#brokk-loading').length === 0) {
+            if (this.options.showOverLay) {
+                this.options.toUpdateElements.forEach(function (element) {
+                    if ($(element).find('#brokk-loading').length === 0) {
                         $(element).append('<span id="brokk-loading">' + $.fn.brokk.loadingTemplate + '</span>');
                     }
-                });                      
-            }           
+                });
+            }
         },
-        onSuccess: function (arguments) {            
-            this.options.toUpdateElements.forEach(function(element) {
+        onSuccess: function (arguments) {
+            this.options.toUpdateElements.forEach(function (element) {
                 $(element).html(arguments.data);
-            });           
+            });
         },
         onError: function (arguments) {
 
         },
-        onComplete: function (arguments) {           
-            this.options.triggerElements.forEach(function(element) {
+        onComplete: function (arguments) {
+            this.options.triggerElements.forEach(function (element) {
                 $(element).prop('disabled', false);
                 $(element).removeClass('disabled');
-            });            
-            this.options.toUpdateElements.forEach(function(element) {
+            });
+            this.options.toUpdateElements.forEach(function (element) {
                 $(element).find('#brokk-loading').remove()
-            });           
+            });
         }
     });
 
@@ -167,7 +167,7 @@
         requestMethod: 'GET',
         requestParams: null,
         fireEvent: $.fn.brokk.fireEvents.ON_READY,
-        toUpdateElements: [], // todo adjust
+        toUpdateElements: [],
         triggerElements: [],
         toFireSuccessElements: [],
         showOverLay: true,
