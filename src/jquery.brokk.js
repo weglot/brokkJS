@@ -168,7 +168,7 @@
         toUpdateElements: [],
         triggerElements: [],
         toFireSuccessElements: [],
-        showOverLay: true,
+        showOverlay: true,
         before: function (args) {
             this.before(args);
         },

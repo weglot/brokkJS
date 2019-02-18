@@ -11,8 +11,8 @@ $(document).ready(function(){
     $(selector).brokk({
         requestUrl: '/url-that-return-json',
         toUpdateElements: selector,
-        onSuccess: function (arguments) {
-            this.onSuccess(arguments); // Call default plugin onSuccess callback
+        onSuccess: function (args) {
+            this.onSuccess(args); // Call default plugin onSuccess callback
             alert('Success!');
         },
     });
@@ -46,21 +46,21 @@ $.fn.brokk.defaults = {
     requestMethod: 'GET',
     requestParams: null,
     fireEvent: $.fn.brokk.fireEvents.ON_READY,
-    toUpdateElements: null,
-    triggerElements: null,
-    toFireSuccessElements: null,
-    showOverLay: true,
-    before: function (arguments) {
-        this.before(arguments);
+    toUpdateElements: [],
+    triggerElements: [],
+    toFireSuccessElements: [],
+    showOverlay: true,
+    before: function (args) {
+        this.before(args);
     },
-    onSuccess: function (arguments) {
-        this.onSuccess(arguments);
+    onSuccess: function (args) {
+        this.onSuccess(args);
     },
-    onError: function (arguments) {
-        this.onError(arguments);
+    onError: function (args) {
+        this.onError(args);
     },
-    onComplete: function (arguments) {
-        this.onComplete(arguments);
+    onComplete: function (args) {
+        this.onComplete(args);
     }
 };
 ```
