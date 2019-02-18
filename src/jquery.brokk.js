@@ -17,9 +17,6 @@
             if (typeof value !== 'function') {
                 var attrIndex = index.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase();
                 value = $(element).attr('data-brokk-' + attrIndex);
-                if (value === 'this') {
-                    value = element;
-                }
                 if (arrayParams.indexOf(index) !== -1 && typeof value === 'string') {
                     value = value.split(',').map(function (item) {
                         return item.trim() === 'this' ? element : item;
@@ -78,9 +75,9 @@
         unbindEvents: function () {
             this.$element.off('.' + this._name);
         },
-        callback: function (callback, arguments) {
+        callback: function (callback, args) {
             if (typeof callback === 'function') {
-                callback.call(this, arguments);
+                callback.call(this, args);
             }
         },
         fire: function () {
@@ -102,14 +99,14 @@
             });
 
         },
-        fireSuccessElements: function (arguments) {
+        fireSuccessElements: function (args) {
             this.options.toFireSuccessElements.forEach(function (element) {
                 if ($(element).data("plugin_" + pluginName)) {
                     $(element).brokkApi().fire();
                 }
             });
         },
-        before: function (arguments) {
+        before: function (args) {
             this.options.triggerElements.forEach(function (element) {
                 $(element).prop('disabled', true);
                 $(element).addClass('disabled');
@@ -122,15 +119,16 @@
                 });
             }
         },
-        onSuccess: function (arguments) {
-            this.options.toUpdateElements.forEach(function (element) {
-                $(element).html(arguments.data);
+        onSuccess: function (args) {
+            this.options.toUpdateElements.forEach(function (element)  {
+                $(element).html(args.data);
             });
+            this.fireSuccessElements();
         },
-        onError: function (arguments) {
+        onError: function (args) {
 
         },
-        onComplete: function (arguments) {
+        onComplete: function (args) {
             this.options.triggerElements.forEach(function (element) {
                 $(element).prop('disabled', false);
                 $(element).removeClass('disabled');
@@ -171,17 +169,17 @@
         triggerElements: [],
         toFireSuccessElements: [],
         showOverLay: true,
-        before: function (arguments) {
-            this.before(arguments);
+        before: function (args) {
+            this.before(args);
         },
-        onSuccess: function (arguments) {
-            this.onSuccess(arguments);
+        onSuccess: function (args) {
+            this.onSuccess(args);
         },
-        onError: function (arguments) {
-            this.onError(arguments);
+        onError: function (args) {
+            this.onError(args);
         },
-        onComplete: function (arguments) {
-            this.onComplete(arguments);
+        onComplete: function (args) {
+            this.onComplete(args);
         }
     };
 
