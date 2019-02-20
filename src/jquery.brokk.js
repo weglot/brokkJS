@@ -16,7 +16,7 @@
         $.each(this._defaults, function (index, value) {
             if (typeof value !== 'function') {
                 var attrIndex = index.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase();
-                value = $(element).attr('data-brokk-' + attrIndex);
+                value = $(element).data('brokk-' + attrIndex);
                 if (arrayParams.indexOf(index) !== -1 && typeof value === 'string') {
                     value = value.split(',').map(function (item) {
                         return item.trim() === 'this' ? element : item;
@@ -111,7 +111,7 @@
                 $(element).prop('disabled', true);
                 $(element).addClass('disabled');
             });
-            if (this.options.showOverLay) {
+            if (this.options.showOverlay) {
                 this.options.toUpdateElements.forEach(function (element) {
                     if ($(element).find('#brokk-loading').length === 0) {
                         $(element).append('<span id="brokk-loading">' + $.fn.brokk.loadingTemplate + '</span>');
