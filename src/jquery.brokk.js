@@ -22,15 +22,9 @@
                         return item.trim() === 'this' ? element : item;
                     });
                 }
-                if (index === 'requestParams' && typeof value !== 'undefined') {
-                    value = JSON.parse(value);
-                }
                 attributes[index] = value;
             }
         });
-        if (typeof attributes.params !== 'undefined') {
-            attributes.params = JSON.parse(attributes.params);
-        }
         this.options = $.extend({}, this._defaults, attributes);
         this.options = $.extend({}, this.options, options);
         this.init();
