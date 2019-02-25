@@ -44,7 +44,6 @@
         },
         bindEvents: function () {
             var plugin = this;
-
             switch (this.options.fireEvent) {
                 case $.fn.brokk.fireEvents.ON_READY:
                     $(document).ready(function () {
@@ -64,7 +63,12 @@
                         }
                     });
                     break;
+                case $.fn.brokk.fireEvents.MANUAL:
+                    break;
             }
+            plugin.$element.on('click' + '.' + plugin._name, function () {
+                plugin.callback(plugin.options.onClick);
+            });
         },
         unbindEvents: function () {
             this.$element.off('.' + this._name);
@@ -130,7 +134,8 @@
             this.options.toUpdateElements.forEach(function (element) {
                 $(element).find('#brokk-loading').remove()
             });
-        }
+        },
+        onClick: function (args) {},
     });
 
     $.fn.brokk = function (options) {
@@ -151,7 +156,8 @@
     $.fn.brokk.fireEvents = {
         ON_READY: 'onReady',
         ON_CLICK: 'onClick',
-        ON_SUBMIT: 'onSubmit'
+        ON_SUBMIT: 'onSubmit',
+        MANUAL: 'manual'
     };
 
     $.fn.brokk.defaults = {
@@ -174,6 +180,9 @@
         },
         onComplete: function (args) {
             this.onComplete(args);
+        },
+        onClick: function (args) {
+            this.onClick(args);
         }
     };
 

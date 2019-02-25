@@ -61,6 +61,9 @@ $.fn.brokk.defaults = {
     },
     onComplete: function (args) {
         this.onComplete(args);
+    },
+    onClick: function (args) {
+        this.onClick(args);
     }
 };
 ```
