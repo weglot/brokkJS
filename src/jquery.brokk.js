@@ -135,7 +135,7 @@
                 $(element).find('#brokk-loading').remove()
             });
         },
-        onClick: function (args) {},
+        onClick: function (args) {}
     });
 
     $.fn.brokk = function (options) {
@@ -148,7 +148,12 @@
     };
 
     $.fn.brokkApi = function () {
-        return $.data(this[0], "plugin_" + pluginName);
+        if (typeof this[0] !== 'undefined') {
+            return $.data(this[0], "plugin_" + pluginName);
+        } else {
+            console.warn('This element was not initialized with Brokk.');
+            return new Plugin(this[0], {});
+        }
     };
 
     $.fn.brokk.loadingTemplate = 'Loading';
