@@ -81,6 +81,10 @@
         fire: function () {
             var plugin = this;
             this.callback(this.options.before);
+            if (this.options.requestUrl === null) {
+                console.warn('No requestUrl defined.');
+                return;
+            }
             $.ajax({
                 url: this.options.requestUrl,
                 type: this.options.requestMethod,
