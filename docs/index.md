@@ -36,7 +36,7 @@ Or use CDN:
 
 Or install with npm:
 ```
-nmp install brokkjs
+npm install brokkjs
 ```
 
 
