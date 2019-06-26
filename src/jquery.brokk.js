@@ -69,6 +69,10 @@
             plugin.$element.on('click' + '.' + plugin._name, function () {
                 plugin.callback(plugin.options.onClick);
             });
+            plugin.$element.on('submit' + '.' + plugin._name, function (e) {
+                e.preventDefault();
+                plugin.callback(plugin.options.onSubmit);
+            });
         },
         unbindEvents: function () {
             this.$element.off('.' + this._name);
@@ -139,7 +143,8 @@
                 $(element).find('#brokk-loading').remove()
             });
         },
-        onClick: function (args) {}
+        onClick: function (args) {},
+        onSubmit: function (args) {}
     });
 
     $.fn.brokk = function (options) {
@@ -192,6 +197,9 @@
         },
         onClick: function (args) {
             this.onClick(args);
+        },
+        onSubmit: function (args) {
+            this.onSubmit(args);
         }
     };
 
