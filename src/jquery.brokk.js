@@ -52,6 +52,9 @@
                     break;
                 case $.fn.brokk.fireEvents.ON_CLICK:
                     plugin.$element.on('click' + '.' + plugin._name, function () {
+                        if ($(this).prop('disabled')) {
+                            return;
+                        }
                         plugin.fire();
                     });
                     break;
