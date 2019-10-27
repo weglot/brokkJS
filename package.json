@@ -1,6 +1,6 @@
 {
   "name": "brokkjs",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "homepage": "https://brokkjs.com",
   "devDependencies": {
     "grunt": "^1.0.4",
