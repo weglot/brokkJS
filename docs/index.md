@@ -107,40 +107,19 @@ $.fn.brokk.defaults = {
 ```
 
 ## Options
-### requestUrl
-required
-{: .label }
-```html
-data-brokk-request-url
-```
-### requestMethod
-```html
-data-brokk-request-method
-```
-### requestParams
-```html
-data-brokk-request-params
-```
-### fireEvent
-```html
-data-brokk-fire-event
-```
-### triggerElements
-```html
-data-brokk-trigger-elements
-```
-### toUpdateElements
-```html
-data-brokk-to-update-elements
-```
-### toFireSuccessElements
-```html
-data-brokk-to-fire-success-elements
-```
-### showOverlay
-```html
-data-brokk-show-overlay
-```
+
+This is a list of all the BrokkJs configuration options.
+
+| Option | Type:Default | Description |
+|:--|:--|:----|
+| requestUrl<br/>`REQUIRED`<br/>`data-brokk-request-url`{: .fs-1 } | `string`:`null` | This is the url where Brokk will make the request. |
+| requestMethod<br/>`data-brokk-request-method`{: .fs-1 } | `string`:`GET` | Used to define the HTTP request method. |
+| requestParams<br/>`data-brokk-request-params`{: .fs-1 } | `object`:`null` | Allow you to pass params with the request. |
+| fireEvent<br/>`data-brokk-fire-event`{: .fs-1 } | `$.fn.brokk.fireEvents`<br/>:`$.fn.brokk.fireEvents.ON_READY` | Event that will trigger the request, by default is when dom is ready. You can also trigger it onClick, onSubmit or manually. |
+| triggerElements<br/>`data-brokk-trigger-elements`{: .fs-1 } | `array`:`[]` | Array of dom elements that will be disabled during du request. Ex: `['#my-button']` |
+| toUpdateElements<br/>`data-brokk-to-update-elements`{: .fs-1 } |  `array`:`[]` | Array of dom elements that will be fulfilled with request result. |
+| toFireSuccessElements<br/>`data-brokk-to-fire-success-elements`{: .fs-1 } |  `array`:`[]` | Array of dom elements initialized with Brokk to fire on request success. |
+| showOverlay<br/>`data-brokk-show-overlay`{: .fs-1 } | `bool`:`true` | Enable or disable loading overlay display on `toUpdateElements`. |
 
 ## Functions
 ### before
