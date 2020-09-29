@@ -6,6 +6,15 @@ description: ""
 permalink: /
 ---
 
+<link rel="alternate" hreflang="en" href="https://brokkjs.com">
+<link rel="alternate" hreflang="fr" href="https://fr.brokkjs.com">
+<script type="text/javascript" src="https://cdn-staging.weglot.com/weglot.min.js"></script>
+<script>
+    Weglot.initialize({
+        api_key: 'wg_1283797eafe362bb148839b93aee185f0'
+    });
+</script>
+
 # Lightweight plugin to make ajax call and block rendering
 {: .fs-9 }
 
