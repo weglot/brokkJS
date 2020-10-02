@@ -132,24 +132,30 @@ This is a list of all the BrokkJs configuration options.
 
 ## Functions
 ### before
+{: .no-translate }
 This function is called before making the Ajax call.
 By default, this function add a class and attribute `disabled` on all `triggerElements`. If `showOverlay` is `true` a loading overlay is displayed on all `toUpdateElements`.
 
 
 ### onSuccess
+{: .no-translate }
 This function is called when ajax call return a success HTTP code.
 By default, replace HTML with data returned by the URL called,`fire()` function use `args.data` to transmit data to this function.
 
 ### onError
+{: .no-translate }
 This function is called when ajax call return an error HTTP code.
 By default, do nothing.
 
 ### onComplete
+{: .no-translate }
 This function is always called after Ajax call.
 By default, this function remove class and attribute `disabled` on all `triggerElements`. Remove loading overlay on all `toUpdateElements`.
 
 ### onClick
+{: .no-translate }
 Callback for click event on initialized Brokk element.
  
 ### onSubmit
+{: .no-translate }
 Callback for submit event on initialized Brokk element.
