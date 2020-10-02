@@ -17,8 +17,8 @@ title: BrokkJS
 email: floran@weglot.com
 description: >- # this means to ignore newlines until "baseurl:"
   BrokkJS gives your code an easy and lightweight way to render block, submit form and make button action with ajax calls.
-baseurl: "/brokkJS/" # the subpath of your site, e.g. /blog
-url: "https://weglot.github.io" # the base hostname & protocol for your site, e.g. http://example.com
+baseurl: "/" # the subpath of your site, e.g. /blog
+url: "https://brokkjs.com" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: weglot
 github_username:  weglot
 

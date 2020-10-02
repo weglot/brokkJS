@@ -11,8 +11,8 @@
         this.element = element;
         this._name = pluginName;
         this._defaults = $.fn.brokk.defaults;
-        var attributes = {};
-        var arrayParams = ['toUpdateElements', 'triggerElements', 'toFireSuccessElements'];
+        const attributes = {};
+        const arrayParams = ['toUpdateElements', 'triggerElements', 'toFireSuccessElements'];
         $.each(this._defaults, function (index, value) {
             if (typeof value !== 'function') {
                 var attrIndex = index.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase();
@@ -43,7 +43,7 @@
             this.$element = $(this.element);
         },
         bindEvents: function () {
-            var plugin = this;
+            const plugin = this;
             switch (this.options.fireEvent) {
                 case $.fn.brokk.fireEvents.ON_READY:
                     $(document).ready(function () {
