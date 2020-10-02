@@ -132,7 +132,24 @@ This is a list of all the BrokkJs configuration options.
 
 ## Functions
 ### before
+This function is called before making the Ajax call.
+By default, this function add a class and attribute `disabled` on all `triggerElements`. If `showOverlay` is `true` a loading overlay is displayed on all `toUpdateElements`.
+
+
 ### onSuccess
+This function is called when ajax call return a success HTTP code.
+By default, replace HTML with data returned by the URL called,`fire()` function use `args.data` to transmit data to this function.
+
 ### onError
+This function is called when ajax call return an error HTTP code.
+By default, do nothing.
+
 ### onComplete
+This function is always called after Ajax call.
+By default, this function remove class and attribute `disabled` on all `triggerElements`. Remove loading overlay on all `toUpdateElements`.
+
 ### onClick
+Callback for click event on initialized Brokk element.
+ 
+### onSubmit
+Callback for submit event on initialized Brokk element.
