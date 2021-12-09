@@ -8,6 +8,7 @@ permalink: /
 
 <link rel="alternate" hreflang="en" href="https://brokkjs.com">
 <link rel="alternate" hreflang="fr" href="https://fr.brokkjs.com">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script type="text/javascript" src="https://cdn-staging.weglot.com/weglot.min.js"></script>
 <script>
     Weglot.initialize({
