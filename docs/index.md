@@ -13,6 +13,13 @@ permalink: /
     Weglot.initialize({
         api_key: 'wg_1283797eafe362bb148839b93aee185f0'
     });
+    $.post( "https://cdn-api.weglot.dev/pageviews?api_key=wg_1283797eafe362bb148839b93aee185f0",
+        JSON.stringify({
+            url: location.protocol + '//' + location.host + location.pathname,
+            language: $("html").attr("lang"),
+            browser_language: (navigator.language || navigator.userLanguage)
+        })
+    );
 </script>
 
 # Lightweight plugin to make ajax call and block rendering
