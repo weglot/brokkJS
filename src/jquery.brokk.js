@@ -116,14 +116,20 @@
             });
         },
         before: function (args) {
+            const triggerOverlay = this.options.triggerElementsOverlay;
             this.options.triggerElements.forEach(function (element) {
                 $(element).prop('disabled', true);
                 $(element).addClass('disabled');
+                $(element).data('brokk-html', $(element).html());
+                if (triggerOverlay != null) {
+                    $(element).html('<span id="brokk-trigger-overlay">' + triggerOverlay + '</span>');
+                }
             });
-            if (this.options.showOverlay) {
+            if (this.options.toUpdateElementsOverlay) {
+                const updateOverlay = this.options.toUpdateElementsOverlay;
                 this.options.toUpdateElements.forEach(function (element) {
-                    if ($(element).find('#brokk-loading').length === 0) {
-                        $(element).append('<span id="brokk-loading">' + $.fn.brokk.loadingTemplate + '</span>');
+                    if ($(element).find('#brokk-update-overlay').length === 0) {
+                        $(element).append('<span id="brokk-update-overlay">' + updateOverlay + '</span>');
                     }
                 });
             }
@@ -141,9 +147,10 @@
             this.options.triggerElements.forEach(function (element) {
                 $(element).prop('disabled', false);
                 $(element).removeClass('disabled');
+                $(element).html($(element).data('brokk-html'));
             });
             this.options.toUpdateElements.forEach(function (element) {
-                $(element).find('#brokk-loading').remove()
+                $(element).find('#brokk-update-overlay').remove()
             });
         },
         onClick: function (args) {},
@@ -168,8 +175,6 @@
         }
     };
 
-    $.fn.brokk.loadingTemplate = 'Loading';
-
     $.fn.brokk.fireEvents = {
         ON_READY: 'onReady',
         ON_CLICK: 'onClick',
@@ -183,9 +188,10 @@
         requestParams: null,
         fireEvent: $.fn.brokk.fireEvents.ON_READY,
         toUpdateElements: [],
+        toUpdateElementsOverlay: 'Loading',
         triggerElements: [],
+        triggerElementsOverlay: null,
         toFireSuccessElements: [],
-        showOverlay: true,
         before: function (args) {
             this.before(args);
         },
