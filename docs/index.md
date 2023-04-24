@@ -102,9 +102,10 @@ $.fn.brokk.defaults = {
     requestParams: null,
     fireEvent: $.fn.brokk.fireEvents.ON_READY,
     toUpdateElements: [],
+    toUpdateElementsOverlay: 'Loading',
     triggerElements: [],
+    triggerElementsOverlay: null,
     toFireSuccessElements: [],
-    showOverlay: true,
     before: function (args) {
         this.before(args);
     },
@@ -134,9 +135,10 @@ This is a list of all the BrokkJs configuration options.
 | requestParams<br/>`data-brokk-request-params`{: .fs-1 } | `object`:`null` | Allow you to pass params with the request. |
 | fireEvent<br/>`data-brokk-fire-event`{: .fs-1 } | `$.fn.brokk.fireEvents`<br/>:`$.fn.brokk.fireEvents.ON_READY` | Event that will trigger the request, by default is when dom is ready. You can also trigger it onClick, onSubmit or manually. |
 | triggerElements<br/>`data-brokk-trigger-elements`{: .fs-1 } | `array`:`[]` | Array of dom elements that will be disabled during du request. Ex: `['#my-button']` |
+| triggerElementsOverlay<br/>`data-brokk-trigger-elements-overlay`{: .fs-1 } | `object`:`null` | String or html that will replace html of triggerElements during loading. By default triggerElements's html will no be changed. |
 | toUpdateElements<br/>`data-brokk-to-update-elements`{: .fs-1 } |  `array`:`[]` | Array of dom elements that will be fulfilled with request result. |
+| toUpdateElementsOverlay<br/>`data-brokk-to-update-elements-overlay`{: .fs-1 } | `string`:`Loading...` | String or html that will be appended on toUpdateElements during loading. |
 | toFireSuccessElements<br/>`data-brokk-to-fire-success-elements`{: .fs-1 } |  `array`:`[]` | Array of dom elements initialized with Brokk to fire on request success. |
-| showOverlay<br/>`data-brokk-show-overlay`{: .fs-1 } | `bool`:`true` | Enable or disable loading overlay display on `toUpdateElements`. |
 
 ## Functions
 ### before
