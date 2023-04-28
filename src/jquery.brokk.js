@@ -116,7 +116,7 @@
             });
         },
         before: function (args) {
-            const triggerOverlay = this.options.triggerElementsOverlay;
+            var triggerOverlay = this.options.triggerElementsOverlay;
             this.options.triggerElements.forEach(function (element) {
                 $(element).prop('disabled', true);
                 $(element).addClass('disabled');
@@ -126,7 +126,7 @@
                 }
             });
             if (this.options.toUpdateElementsOverlay) {
-                const updateOverlay = this.options.toUpdateElementsOverlay;
+                var updateOverlay = this.options.toUpdateElementsOverlay;
                 this.options.toUpdateElements.forEach(function (element) {
                     if ($(element).find('#brokk-update-overlay').length === 0) {
                         $(element).append('<span id="brokk-update-overlay">' + updateOverlay + '</span>');
