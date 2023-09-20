@@ -74,6 +74,15 @@
                         }
                     });
                     break;
+                case $.fn.brokk.fireEvents.ON_KEYPRESS:
+                    plugin.$element.on('keypress' + '.' + plugin._name, function (e) {
+                        var keycode = (e.keyCode ? e.keyCode : e.which);
+                        if ($(this).prop('disabled') || keycode !== '13') {
+                            return;
+                        }
+                        plugin.fire();
+                    });
+                    break;
                 case $.fn.brokk.fireEvents.MANUAL:
                     break;
                 case $.fn.brokk.fireEvents.DISABLED:
