@@ -66,11 +66,23 @@
                         }
                     });
                     break;
+                case $.fn.brokk.fireEvents.ON_KEYPRESS:
+                    plugin.$element.on('keypress' + '.' + plugin._name, function (e) {
+                        var keycode = (e.keyCode ? e.keyCode : e.which);
+                        if ($(this).prop('disabled') || keycode !== '13') {
+                            return;
+                        }
+                        plugin.fire();
+                    });
+                    break;
                 case $.fn.brokk.fireEvents.MANUAL:
                     break;
             }
             plugin.$element.on('click' + '.' + plugin._name, function () {
                 plugin.callback(plugin.options.onClick);
+            });
+            plugin.$element.on('keypress' + '.' + plugin._name, function () {
+                plugin.callback(plugin.options.onKeypress);
             });
             plugin.$element.on('submit' + '.' + plugin._name, function (e) {
                 e.preventDefault();
@@ -179,6 +191,7 @@
         ON_READY: 'onReady',
         ON_CLICK: 'onClick',
         ON_SUBMIT: 'onSubmit',
+        ON_KEYPRESS: 'onKeyPress',
         MANUAL: 'manual'
     };
 
@@ -209,7 +222,10 @@
         },
         onSubmit: function (args) {
             this.onSubmit(args);
-        }
+        },
+        onKeypress: function (args) {
+            this.onKeypress(args);
+        },
     };
 
 })(jQuery, window, document);

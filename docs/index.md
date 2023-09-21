@@ -133,7 +133,7 @@ This is a list of all the BrokkJs configuration options.
 | requestUrl<br/>`REQUIRED`<br/>`data-brokk-request-url`{: .fs-1 } | `string`:`null` | This is the url where Brokk will make the request. |
 | requestMethod<br/>`data-brokk-request-method`{: .fs-1 } | `string`:`GET` | Used to define the HTTP request method. |
 | requestParams<br/>`data-brokk-request-params`{: .fs-1 } | `object`:`null` | Allow you to pass params with the request. |
-| fireEvent<br/>`data-brokk-fire-event`{: .fs-1 } | `$.fn.brokk.fireEvents`<br/>:`$.fn.brokk.fireEvents.ON_READY` | Event that will trigger the request, by default is when dom is ready. You can also trigger it onClick, onSubmit or manually. |
+| fireEvent<br/>`data-brokk-fire-event`{: .fs-1 } | `$.fn.brokk.fireEvents`<br/>:`$.fn.brokk.fireEvents.ON_READY` | Event that will trigger the request, by default is when dom is ready. You can also trigger it onClick, onSubmit, onKeypress, or manually. |
 | triggerElements<br/>`data-brokk-trigger-elements`{: .fs-1 } | `array`:`[]` | Array of dom elements that will be disabled during du request. Ex: `['#my-button']` |
 | triggerElementsOverlay<br/>`data-brokk-trigger-elements-overlay`{: .fs-1 } | `object`:`null` | String or html that will replace html of triggerElements during loading. By default triggerElements's html will no be changed. |
 | toUpdateElements<br/>`data-brokk-to-update-elements`{: .fs-1 } |  `array`:`[]` | Array of dom elements that will be fulfilled with request result. |
@@ -165,7 +165,12 @@ By default, this function remove class and attribute `disabled` on all `triggerE
 ### onClick
 {: .no-translate }
 Callback for click event on initialized Brokk element.
- 
+
+### onKeypress
+{: .no-translate }
+Callback for keypress event on initialized Brokk element. Works only when key is Enter. 
+
+
 ### onSubmit
 {: .no-translate }
 Callback for submit event on initialized Brokk element.
