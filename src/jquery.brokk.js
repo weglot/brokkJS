@@ -57,6 +57,14 @@
                         }
                         plugin.fire();
                     });
+
+                    plugin.$element.on('keypress' + '.' + plugin._name, function (e) {
+                        var keycode = (e.keyCode ? e.keyCode : e.which);
+                        if ($(this).prop('disabled') || keycode !== '13') {
+                            return;
+                        }
+                        plugin.fire();
+                    });
                     break;
                 case $.fn.brokk.fireEvents.ON_SUBMIT:
                     plugin.$element.on('submit' + '.' + plugin._name, function (e) {
@@ -222,9 +230,6 @@
         },
         onSubmit: function (args) {
             this.onSubmit(args);
-        },
-        onKeypress: function (args) {
-            this.onKeypress(args);
         },
     };
 
