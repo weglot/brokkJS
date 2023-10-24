@@ -128,17 +128,17 @@ $.fn.brokk.defaults = {
 
 This is a list of all the BrokkJs configuration options.
 
-| Option | Type:Default | Description                                                                                                                                                 |
-|:--|:--|:------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| requestUrl<br/>`REQUIRED`<br/>`data-brokk-request-url`{: .fs-1 } | `string`:`null` | This is the url where Brokk will make the request.                                                                                                          |
-| requestMethod<br/>`data-brokk-request-method`{: .fs-1 } | `string`:`GET` | Used to define the HTTP request method.                                                                                                                     |
-| requestParams<br/>`data-brokk-request-params`{: .fs-1 } | `object`:`null` | Allow you to pass params with the request.                                                                                                                  |
-| fireEvent<br/>`data-brokk-fire-event`{: .fs-1 } | `$.fn.brokk.fireEvents`<br/>:`$.fn.brokk.fireEvents.ON_READY` | Event that will trigger the request, by default is when dom is ready. You can also trigger it onClick, onSubmit, onKeypress, manually or disable any event. |
-| triggerElements<br/>`data-brokk-trigger-elements`{: .fs-1 } | `array`:`[]` | Array of dom elements that will be disabled during du request. Ex: `['#my-button']`                                                                         |
-| triggerElementsOverlay<br/>`data-brokk-trigger-elements-overlay`{: .fs-1 } | `object`:`null` | String or html that will replace html of triggerElements during loading. By default triggerElements's html will no be changed.                              |
-| toUpdateElements<br/>`data-brokk-to-update-elements`{: .fs-1 } |  `array`:`[]` | Array of dom elements that will be fulfilled with request result.                                                                                           |
-| toUpdateElementsOverlay<br/>`data-brokk-to-update-elements-overlay`{: .fs-1 } | `string`:`Loading...` | String or html that will be appended on toUpdateElements during loading.                                                                                    |
-| toFireSuccessElements<br/>`data-brokk-to-fire-success-elements`{: .fs-1 } |  `array`:`[]` | Array of dom elements initialized with Brokk to fire on request success.                                                                                    |
+| Option | Type:Default | Description                                                                                                                                                   |
+|:--|:--|:--------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| requestUrl<br/>`REQUIRED`<br/>`data-brokk-request-url`{: .fs-1 } | `string`:`null` | This is the url where Brokk will make the request.                                                                                                            |
+| requestMethod<br/>`data-brokk-request-method`{: .fs-1 } | `string`:`GET` | Used to define the HTTP request method.                                                                                                                       |
+| requestParams<br/>`data-brokk-request-params`{: .fs-1 } | `object`:`null` | Allow you to pass params with the request.                                                                                                                    |
+| fireEvent<br/>`data-brokk-fire-event`{: .fs-1 } | `$.fn.brokk.fireEvents`<br/>:`$.fn.brokk.fireEvents.ON_READY` | Event that will trigger the request, by default is when dom is ready. You can also trigger it onClick, onSubmit, onKeypress, manually or disable any request. |
+| triggerElements<br/>`data-brokk-trigger-elements`{: .fs-1 } | `array`:`[]` | Array of dom elements that will be disabled during du request. Ex: `['#my-button']`                                                                           |
+| triggerElementsOverlay<br/>`data-brokk-trigger-elements-overlay`{: .fs-1 } | `object`:`null` | String or html that will replace html of triggerElements during loading. By default triggerElements's html will no be changed.                                |
+| toUpdateElements<br/>`data-brokk-to-update-elements`{: .fs-1 } |  `array`:`[]` | Array of dom elements that will be fulfilled with request result.                                                                                             |
+| toUpdateElementsOverlay<br/>`data-brokk-to-update-elements-overlay`{: .fs-1 } | `string`:`Loading...` | String or html that will be appended on toUpdateElements during loading.                                                                                      |
+| toFireSuccessElements<br/>`data-brokk-to-fire-success-elements`{: .fs-1 } |  `array`:`[]` | Array of dom elements initialized with Brokk to fire on request success.                                                                                      |
 
 ## Functions
 ### before
