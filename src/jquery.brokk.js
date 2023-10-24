@@ -85,6 +85,8 @@
                     break;
                 case $.fn.brokk.fireEvents.MANUAL:
                     break;
+                case $.fn.brokk.fireEvents.DISABLED:
+                    break;
             }
             plugin.$element.on('click' + '.' + plugin._name, function () {
                 plugin.callback(plugin.options.onClick);
@@ -107,6 +109,9 @@
         },
         fire: function () {
             var plugin = this;
+            if (this.options.fireEvent === $.fn.brokk.fireEvents.DISABLED) {
+                return;
+            }
             this.callback(this.options.before);
             if (this.options.requestUrl === null) {
                 console.warn('No requestUrl defined.');
@@ -200,7 +205,8 @@
         ON_CLICK: 'onClick',
         ON_SUBMIT: 'onSubmit',
         ON_KEYPRESS: 'onKeyPress',
-        MANUAL: 'manual'
+        MANUAL: 'manual',
+        DISABLED: 'disabled'
     };
 
     $.fn.brokk.defaults = {
