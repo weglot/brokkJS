@@ -14,11 +14,6 @@ Download:
 <script src="/change/path/to/jquery.brokk.min.js"></script>
 ```
 
-Or use CDN:
-```
-<script src="https://unpkg.com/brokkjs/dist/jquery.brokk.min.js"></script>
-```
-
 Or install with npm:
 ```
 nmp install brokkjs
