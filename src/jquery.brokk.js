@@ -1,7 +1,7 @@
 // ---------------------------------
 // ---------- BrokkJS ----------
 // ---------------------------------
-// Brief plugin description
+// Lightweight plugin to make ajax call and block rendering
 // ------------------------
 ;(function ($, window, document, undefined) {
 
@@ -57,7 +57,6 @@
                         }
                         plugin.fire();
                     });
-
                     plugin.$element.on('keypress' + '.' + plugin._name, function (e) {
                         var keycode = (e.keyCode ? e.keyCode : e.which);
                         if ($(this).prop('disabled') || keycode !== '13') {
@@ -183,7 +182,7 @@
         if (typeof this[0] !== 'undefined') {
             return $.data(this[0], "plugin_" + pluginName);
         } else {
-            console.warn('This element was not initialized with Brokk.');
+            console.info('This element was not initialized with Brokk.');
             return new Plugin(this[0], {});
         }
     };
@@ -225,5 +224,4 @@
             this.onSubmit(args);
         },
     };
-
 })(jQuery, window, document);
