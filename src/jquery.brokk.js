@@ -95,11 +95,14 @@
             }
         },
         fire: function () {
-            var plugin = this;
             this.callback(this.options.before);
             if (this.options.fireEvent === $.fn.brokk.fireEvents.DISABLED) {
                 return;
             }
+            this.ajax();
+        },
+        ajax: function () {
+            let plugin = this;
             if (this.options.requestUrl === null) {
                 console.warn('No requestUrl defined.');
                 return;
@@ -118,7 +121,6 @@
             }).always(function () {
                 plugin.callback(plugin.options.onComplete);
             });
-
         },
         fireSuccessElements: function (args) {
             this.options.toFireSuccessElements.forEach(function (element) {
